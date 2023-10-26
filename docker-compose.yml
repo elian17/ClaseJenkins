@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  mi_app:
+    build: .
+    ports:
+      - "4000:3000"
+    links:
+      - mongocom
+  mongocom:
+    image: mongo
+    ports: 
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=elian
+      - MONGO_INITDB_ROOT_PASSWORD=12345
+    volumes:
+      - mongo-data:/data/db
+      # mysql -> /var/lib/mysql
+      # postgres -> /var/liba/postgresql
+
+volumes:
+  mongo-data:
